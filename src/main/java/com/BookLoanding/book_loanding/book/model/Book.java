@@ -55,5 +55,6 @@ public class Book {
         this.author = bookRequest.getAuthor();
         this.stock = bookRequest.getStock();
         this.categoriesId = categories;
+        this.imageUrl = bookRequest.getImageUrl();
     }
 }
