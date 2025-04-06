@@ -19,4 +19,5 @@ public class BookDTO implements Serializable {
     private String author;
     private Integer stock;
     private List<Category> categories;
+    private String imageUrl;
 }

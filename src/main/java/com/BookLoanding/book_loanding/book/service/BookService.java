@@ -63,6 +63,7 @@ public class BookService {
         book.setAuthor(bookRequest.getAuthor());
         book.setStock(bookRequest.getStock());
         book.setCategoriesId(categories);
+        book.setImageUrl(bookRequest.getImageUrl());
 
         return bookDtoMapper.apply(book);
     }

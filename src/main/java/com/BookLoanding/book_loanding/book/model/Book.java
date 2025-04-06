@@ -46,6 +46,9 @@ public class Book {
     @JsonIgnore
     private List<Category> categoriesId;
 
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
+
     public Book(BookRequest bookRequest, List<Category> categories) {
         this.title = bookRequest.getTitle();
         this.description = bookRequest.getDescription();

@@ -34,4 +34,7 @@ public class BookRequest {
     @NotNull
     @Size(min = 1)
     private List<Short> categories;
+
+    @NotBlank
+    private String imageUrl;
 }

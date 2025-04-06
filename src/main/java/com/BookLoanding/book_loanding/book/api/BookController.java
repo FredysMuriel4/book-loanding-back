@@ -23,6 +23,12 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+    @GetMapping("/{id}")
+    public Book getBook(@PathVariable Short id) {
+
+        return bookService.getBookById(id);
+    }
+
     @PutMapping("/update/{id}")
     public BookDTO updateBook(
             @PathVariable Short id,
