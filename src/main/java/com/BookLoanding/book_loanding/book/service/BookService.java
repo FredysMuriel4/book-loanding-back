@@ -44,6 +44,12 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
+    public BookDTO getBookDtoById(Short id) {
+
+        Book book = getBookById(id);
+        return bookDtoMapper.apply(book);
+    }
+
     public BookDTO storeBook(BookRequest bookRequest) {
 
         List<Category> categories = categoryService.getAllCategoriesById(bookRequest.getCategories());

@@ -24,9 +24,9 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable Short id) {
+    public BookDTO getBook(@PathVariable Short id) {
 
-        return bookService.getBookById(id);
+        return bookService.getBookDtoById(id);
     }
 
     @PutMapping("/update/{id}")
