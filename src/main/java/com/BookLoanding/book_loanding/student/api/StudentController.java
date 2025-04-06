@@ -25,4 +25,19 @@ public class StudentController {
     public StudentDTO createStudent(@Validated @RequestBody StudentRequest studentRequest) {
         return studentService.storeStudent(studentRequest);
     }
+
+    @PutMapping("/update/{id}")
+    public StudentDTO updateStudent(
+            @PathVariable Short id,
+            @Validated @RequestBody StudentRequest studentRequest
+    ) {
+
+        return studentService.updateStudent(id, studentRequest);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Short id) {
+
+        return studentService.deleteStudent(id);
+    }
 }

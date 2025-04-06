@@ -53,11 +53,34 @@ public class BookService {
         return bookDtoMapper.apply(bookSaved);
     }
 
+    public BookDTO updateBook(Short id, BookRequest bookRequest) {
+
+        List<Category> categories = categoryService.getAllCategoriesById(bookRequest.getCategories());
+        Book book = getBookById(id);
+
+        book.setTitle(bookRequest.getTitle());
+        book.setDescription(bookRequest.getDescription());
+        book.setAuthor(bookRequest.getAuthor());
+        book.setStock(bookRequest.getStock());
+        book.setCategoriesId(categories);
+
+        return bookDtoMapper.apply(book);
+    }
+
+    public String deleteBook(Short id) {
+
+        Book book = getBookById(id);
+        String title = book.getTitle();
+
+        bookRepository.delete(book);
+
+        return "Book with id: "+id.toString()+" and Title: "+title+" deleted";
+    }
+
     public void validateBookStock(List<BookLoanItem> items) {
 
         for (BookLoanItem item : items) {
-            Book book = bookRepository.findById(item.getBookId())
-                    .orElseThrow(() -> new RuntimeException("Book not found"));
+            Book book = getBookById(item.getBookId());
 
             Integer bookStock = book.getStock();
             if(item.getQuantity() > bookStock) {

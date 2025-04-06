@@ -1,10 +1,12 @@
 package com.BookLoanding.book_loanding.student.dto;
 
+import com.BookLoanding.book_loanding.loan.model.Loan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +19,5 @@ public class StudentDTO implements Serializable {
     private String identificationNumber;
     private String email;
     private String address;
+    private List<Loan> loans;
 }

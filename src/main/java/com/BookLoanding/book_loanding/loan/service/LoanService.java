@@ -42,9 +42,10 @@ public class LoanService {
 
     public LoanDTO storeLoan(LoanRequest loanRequest) {
 
-        bookService.validateBookStock(loanRequest.getItems());
-
         Student student = studentService.getStudentById(loanRequest.getStudentId());
+
+        bookService.validateBookStock(loanRequest.getItems());
+        studentService.validateHaveMoreThanTwoActivesLoans(student);
 
         List<Short> bookIds = loanRequest.getItems().stream()
                 .map(BookLoanItem::getBookId)
