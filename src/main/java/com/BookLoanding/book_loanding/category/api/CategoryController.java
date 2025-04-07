@@ -3,6 +3,7 @@ package com.BookLoanding.book_loanding.category.api;
 import com.BookLoanding.book_loanding.book.dto.BookDTO;
 import com.BookLoanding.book_loanding.book.request.BookRequest;
 import com.BookLoanding.book_loanding.category.dto.CategoryDTO;
+import com.BookLoanding.book_loanding.category.model.Category;
 import com.BookLoanding.book_loanding.category.request.CategoryRequest;
 import com.BookLoanding.book_loanding.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,12 @@ public class CategoryController {
     public List<CategoryDTO> getAllCategories() {
 
         return categoryService.getAllCategories();
+    }
+
+    @GetMapping("/{id}")
+    public Category getCategory(@PathVariable Short id) {
+
+        return categoryService.getCategoryById(id);
     }
 
     @PutMapping("/update/{id}")
