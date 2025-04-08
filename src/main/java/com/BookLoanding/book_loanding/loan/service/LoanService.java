@@ -73,8 +73,7 @@ public class LoanService {
 
     public LoanDTO updateLoan(Short id, LoanUpdateRequest loanUpdateRequest) {
 
-        Loan loan = loanRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Loan not found"));
+        Loan loan = getLoanById(id);
 
         validateBookQuantityReturned(loanUpdateRequest.getItems(), loan);
 
@@ -86,6 +85,20 @@ public class LoanService {
         restockQuantity(loanUpdateRequest.getItems());
 
         return loanUpdated;
+    }
+
+    public String deleteLoan(Short id) {
+
+        Loan loan = getLoanById(id);
+        loanRepository.delete(loan);
+
+        return "Loan with id: "+id+" deleted";
+    }
+
+    public Loan getLoanById(Short id) {
+
+        return loanRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Loan not found"));
     }
 
     public void restockQuantity(List<BookLoanItem> items) {
